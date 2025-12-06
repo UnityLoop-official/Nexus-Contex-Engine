@@ -9,7 +9,7 @@ namespace NexusVS.Services
     public class DaemonClient
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "http://localhost:5050";
+        public const string BaseUrl = "http://localhost:5050";
 
         public DaemonClient()
         {

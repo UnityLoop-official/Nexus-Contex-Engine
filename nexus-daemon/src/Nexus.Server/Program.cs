@@ -1,5 +1,6 @@
 using Nexus.Core.Services;
 using Nexus.Linker.Services;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +10,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Core Services
+builder.Services.AddMemoryCache(); // Cache for CachedCodeIndexer
 // Register the base CodeIndexer and wrap it with CachedCodeIndexer for performance
 builder.Services.AddScoped<CodeIndexer>(); // Concrete implementation
 builder.Services.AddScoped<ICodeIndexer>(sp =>
 {
     var baseIndexer = sp.GetRequiredService<CodeIndexer>();
-    return new CachedCodeIndexer(baseIndexer); // Decorator pattern with 30s TTL cache
+    var cache = sp.GetRequiredService<IMemoryCache>();
+    return new CachedCodeIndexer(baseIndexer, cache);
 });
 builder.Services.AddScoped<IContextCompiler, ContextCompiler>();
 

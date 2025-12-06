@@ -5,7 +5,7 @@ namespace Nexus.Linker.Services;
 
 public class ContextCompiler : IContextCompiler
 {
-    public string Compile(List<Rule> rules, List<Node> nodes, List<Decision> decisions)
+    public string Compile(IEnumerable<Rule> rules, IEnumerable<Node> nodes, IEnumerable<Decision> decisions)
     {
         var sb = new StringBuilder();
 

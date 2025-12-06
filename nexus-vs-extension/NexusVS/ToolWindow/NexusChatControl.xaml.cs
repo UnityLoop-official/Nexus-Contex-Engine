@@ -52,10 +52,12 @@ namespace NexusVS.ToolWindow
             {
                 // Network/connection errors - daemon not reachable
                 AppendText("⚠️ Connection Error: Cannot reach Nexus Daemon.");
-                AppendText("   Make sure the daemon is running at http://localhost:5050");
-                AppendText($"   Details: {httpEx.Message}");
-
-                // Log detailed error for debugging (in real app, use proper logger)
+                AppendText("   Please ensure the 'Nexus Context Daemon' is running.");
+                AppendText("   Run command: 'dotnet run' in nexus-daemon/src/Nexus.Server");
+                AppendText($"   Expected URL: {DaemonClient.BaseUrl}"); 
+                // Note: DaemonClient.BaseUrl would need to be public or we just hardcode 5050 here for message consistency
+                
+                // Log detailed error for debugging
                 System.Diagnostics.Debug.WriteLine($"[NexusVS] HTTP Error: {httpEx}");
             }
             catch (InvalidOperationException invalidEx)

@@ -1,71 +1,34 @@
-using System.Collections.Concurrent;
+using Microsoft.Extensions.Caching.Memory;
 using Nexus.Core.Models;
+using Nexus.Linker.Services;
 
 namespace Nexus.Linker.Services;
 
 /// <summary>
-/// Decorator for ICodeIndexer that provides simple in-memory caching.
-/// Cache strategy: TTL-based (time-to-live), no file watching for MVP.
+/// Decorator for ICodeIndexer that provides in-memory caching using IMemoryCache.
 /// </summary>
-public sealed class CachedCodeIndexer : ICodeIndexer
+public class CachedCodeIndexer : ICodeIndexer
 {
     private readonly ICodeIndexer _inner;
-    private readonly ConcurrentDictionary<string, CachedEntry> _cache;
-    private readonly TimeSpan _cacheTtl;
+    private readonly IMemoryCache _cache;
+    private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(5);
 
-    public CachedCodeIndexer(ICodeIndexer inner)
+    public CachedCodeIndexer(ICodeIndexer inner, IMemoryCache cache)
     {
-        _inner = inner ?? throw new ArgumentNullException(nameof(inner));
-        _cache = new ConcurrentDictionary<string, CachedEntry>(StringComparer.OrdinalIgnoreCase);
-        _cacheTtl = TimeSpan.FromSeconds(30); // Simple TTL: 30 seconds for MVP
+        _inner = inner;
+        _cache = cache;
     }
 
     public async Task<List<Node>> IndexAsync(string path)
     {
-        if (string.IsNullOrWhiteSpace(path))
+        // Simple cache key based on path
+        string key = $"CodeIndex_{path}";
+
+        return await _cache.GetOrCreateAsync(key, async entry =>
         {
+            entry.AbsoluteExpirationRelativeToNow = CacheDuration;
+            // Allow larger items but maybe track size? MVP: simple time expiration.
             return await _inner.IndexAsync(path);
-        }
-
-        // Normalize the cache key
-        var cacheKey = Path.GetFullPath(path);
-
-        // Check if we have a valid cached entry
-        if (_cache.TryGetValue(cacheKey, out var entry))
-        {
-            var age = DateTime.UtcNow - entry.Timestamp;
-            if (age < _cacheTtl)
-            {
-                // Cache hit: return cached nodes
-                return entry.Nodes;
-            }
-        }
-
-        // Cache miss or expired: index and update cache
-        var nodes = await _inner.IndexAsync(path);
-
-        var newEntry = new CachedEntry
-        {
-            Nodes = nodes,
-            Timestamp = DateTime.UtcNow
-        };
-
-        _cache.AddOrUpdate(cacheKey, newEntry, (_, __) => newEntry);
-
-        return nodes;
-    }
-
-    /// <summary>
-    /// Clears all cached entries. Useful for testing or forced refresh.
-    /// </summary>
-    public void ClearCache()
-    {
-        _cache.Clear();
-    }
-
-    private sealed class CachedEntry
-    {
-        public required List<Node> Nodes { get; init; }
-        public required DateTime Timestamp { get; init; }
+        }) ?? new List<Node>();
     }
 }

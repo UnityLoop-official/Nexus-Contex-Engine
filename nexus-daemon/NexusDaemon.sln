@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.Core", "src\Nexus.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.Linker", "src\Nexus.Linker\Nexus.Linker.csproj", "{2F3A0092-B3DE-4E82-B533-9EC7852CB4A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.Server.Tests", "tests\Nexus.Server.Tests\Nexus.Server.Tests.csproj", "{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,18 @@ Global
 		{2F3A0092-B3DE-4E82-B533-9EC7852CB4A9}.Release|x64.Build.0 = Release|Any CPU
 		{2F3A0092-B3DE-4E82-B533-9EC7852CB4A9}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F3A0092-B3DE-4E82-B533-9EC7852CB4A9}.Release|x86.Build.0 = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|x64.Build.0 = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Debug|x86.Build.0 = Debug|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|x64.ActiveCfg = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|x64.Build.0 = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|x86.ActiveCfg = Release|Any CPU
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{540D993D-0A54-4B8A-8ED5-3C4F2234737F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{2F3A0092-B3DE-4E82-B533-9EC7852CB4A9} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{1268E0E0-01B0-4B6C-9B47-CC8DD8BA0076} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
