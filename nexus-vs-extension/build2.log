@@ -1,0 +1,21 @@
+Compilazione avviata 06/12/2025 21:05:21.
+Il livello di dettaglio della registrazione è impostato su: Detailed.     0>Processo = "C:\Program Files\dotnet\dotnet.exe"
+       Percorso dell'eseguibile di MSBuild = "C:\Program Files\dotnet\sdk\9.0.307\MSBuild.dll"
+       Argomenti della riga di comando = "C:\Program Files\dotnet\sdk\9.0.307\MSBuild.dll -maxcpucount -verbosity:m -tlp:default=auto -nologo -restore -consoleloggerparameters:Summary NexusVS/NexusVS.csproj -fl -flp:logfile=build2.log -distributedlogger:Microsoft.DotNet.Tools.MSBuild.MSBuildLogger,C:\Program Files\dotnet\sdk\9.0.307\dotnet.dll*Microsoft.DotNet.Tools.MSBuild.MSBuildForwardingLogger,C:\Program Files\dotnet\sdk\9.0.307\dotnet.dll"
+       Directory corrente = "C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension"
+       Versione di MSBuild = "17.14.28+09c1be848"
+       In base alla chiave del Registro di sistema di Windows LongPathsEnabled, la funzionalità LongPaths è disabilitata.
+       In base alla chiave del Registro di sistema di Windows VerifiedAndReputablePolicyState, stato SAC = 0: disattivato.
+     1>Progetto "C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension\NexusVS\NexusVS.csproj" sul nodo 1 (destinazioni: Restore).
+     1>C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension\NexusVS\NexusVS.csproj(43,3): error MSB4025: non è stato possibile caricare il file di progetto. The 'ItemGroup' start tag on line 35 position 4 does not match the end tag of 'Project'. Line 43, position 3.
+     1>Compilazione progetto "C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension\NexusVS\NexusVS.csproj" (destinazioni: Restore) NON RIUSCITA.
+
+Compilazione NON RIUSCITA.
+
+       "C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension\NexusVS\NexusVS.csproj" (destinazione: Restore) (1) ->
+         C:\Users\dacan\OneDrive\Desktop\NexusDev\nexus-vs-extension\NexusVS\NexusVS.csproj(43,3): error MSB4025: non è stato possibile caricare il file di progetto. The 'ItemGroup' start tag on line 35 position 4 does not match the end tag of 'Project'. Line 43, position 3.
+
+    Avvisi: 0
+    Errori: 1
+
+Tempo trascorso 00:00:00.05
